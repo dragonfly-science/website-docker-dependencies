@@ -1,6 +1,5 @@
 FROM ruby
 MAINTAINER chris@dragonfly.co.nz
-# VERSION 0001
 
 RUN apt-get update && \
     apt-get install -y entr && \
@@ -8,9 +7,7 @@ RUN apt-get update && \
     
 RUN gem install sass
 
-COPY scss-dragonflyweb.sh /
 RUN mkdir /work && chmod -R 777 /work
 WORKDIR /work
 
-ENTRYPOINT ["/scss-dragonflyweb.sh"]
 
