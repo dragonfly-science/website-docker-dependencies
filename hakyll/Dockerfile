@@ -14,3 +14,6 @@ RUN apt-get update && \
 ENV LANG en_NZ.utf8
 ENV LANGUAGE en_NZ:en
 
+RUN apt-get update && \
+    apt-get install -y graphicsmagick-imagemagick-compat && \
+    rm -rf /var/lib/apt/lists/*  
