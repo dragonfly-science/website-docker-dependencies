@@ -24,5 +24,5 @@ ENV LANGUAGE en_NZ:en
 COPY cabal.config /build/
 RUN cd /build && \
     cabal update && \
-    cabal install --global hakyll xml-hamlet html-conduit hxt clay && \
+    cabal install --global hakyll xml-hamlet html-conduit hxt clay hamlet hjsmin && \
     rm -r /root/.cabal/packages /root/.cabal/logs /root/.cabal/setup-exe-cache
