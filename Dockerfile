@@ -7,6 +7,7 @@ RUN apt-get update && \
     apt-get install -y locales \
                        curl \
                        ruby \
+                       git \
                        graphicsmagick-imagemagick-compat && \
     gem install sass -v 3.4.18 && \
     curl -sL https://deb.nodesource.com/setup_0.12 | bash - && \
