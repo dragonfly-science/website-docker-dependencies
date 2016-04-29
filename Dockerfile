@@ -1,28 +1,23 @@
-FROM haskell:7.10.2
+FROM fpco/stack-build:lts-5.14
 
 
 RUN echo "Pacific/Auckland" > /etc/timezone
 RUN dpkg-reconfigure -f noninteractive tzdata
-RUN apt-get update && \
+RUN curl -sL https://deb.nodesource.com/setup_4.x | bash - && \
     apt-get install -y locales \
                        curl \
                        ruby \
                        git \
-                       graphicsmagick-imagemagick-compat && \
+                       graphicsmagick-imagemagick-compat \
+                       nodejs && \
     gem install sass -v 3.4.18 && \
-    curl -sL https://deb.nodesource.com/setup_0.12 | bash - && \
-    apt-get install -y nodejs && \
-    npm install -g elm@2.0.0 \
+    npm install -g \
       yuglify@0.1.4 \
-      es6-module-transpiler@0.10.0 \
-      divshot-cli@1.10.5 && \
+      es6-module-transpiler@0.10.0 && \
     rm -rf /var/lib/apt/lists/* && \
     localedef -i en_NZ -c -f UTF-8 -A /usr/share/locale/locale.alias en_NZ.UTF-8
 ENV LANG en_NZ.utf8
 ENV LANGUAGE en_NZ:en
 
-COPY cabal.config /build/
-RUN cd /build && \
-    cabal update && \
-    cabal install --global hakyll xml-hamlet html-conduit hxt clay hamlet hjsmin && \
-    rm -r /root/.cabal/packages /root/.cabal/logs /root/.cabal/setup-exe-cache
+RUN stack install hakyll xml-hamlet html-conduit hxt
+
