@@ -22,3 +22,10 @@ RUN apt-get update && apt-get install -y curl && \
 ENV LANG en_NZ.utf8
 ENV LANGUAGE en_NZ:en
 
+ENV STACK_ROOT /stack
+RUN stack config set resolver lts-5.15 && stack setup
+RUN stack install hakyll xml-hamlet html-conduit hxt
+
+RUN chmod -R o+w /stack
+RUN echo "allow-different-user: true" > /stack/config.yaml
+
