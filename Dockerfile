@@ -24,7 +24,7 @@ ENV LANGUAGE en_NZ:en
 
 ENV STACK_ROOT /stack
 RUN stack setup
-RUN stack install hakyll xml-hamlet html-conduit hxt
+RUN stack install hakyll xml-hamlet html-conduit hxt hamlet
 
 RUN chmod -R o+w /stack
 RUN echo "allow-different-user: true" > /stack/config.yaml
