@@ -24,9 +24,10 @@ ENV LANGUAGE en_NZ:en
 
 WORKDIR /work
 ADD https://raw.githubusercontent.com/dragonfly-science/dragonfly-website/master/haskell/stack.yaml .
+ADD https://raw.githubusercontent.com/dragonfly-science/dragonfly-website/master/haskell/dragonfly-website.cabal .
 ENV STACK_ROOT /stack
 RUN stack setup
-RUN stack install hakyll xml-hamlet html-conduit hxt hamlet
+RUN stack install --only-dependencies
 
 RUN chmod -R o+w /stack
 RUN echo "allow-different-user: true" > /stack/config.yaml
