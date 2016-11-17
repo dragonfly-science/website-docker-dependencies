@@ -22,6 +22,8 @@ RUN apt-get update && apt-get install -y curl && \
 ENV LANG en_NZ.utf8
 ENV LANGUAGE en_NZ:en
 
+WORKDIR /work
+ADD https://raw.githubusercontent.com/dragonfly-science/dragonfly-website/master/haskell/stack.yaml .
 ENV STACK_ROOT /stack
 RUN stack setup
 RUN stack install hakyll xml-hamlet html-conduit hxt hamlet
